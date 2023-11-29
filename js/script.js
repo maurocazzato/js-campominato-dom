@@ -19,25 +19,50 @@ const playGame = document.querySelector(".play");
 playGame.addEventListener("click", function(){
     
     const container = document.querySelector(".grid");
+    let newGame = false;
+    let point = 0;
+   
 
     // Il computer deve generare 16 numeri casuali
-    const newArrNum = genArrayRandomNum(1, 100, 16);
-    console.log(newArrNum);
+    const NUMBER_OF_BOMBS= genArrayRandomNum(1, 100, 16);
+    console.log(NUMBER_OF_BOMBS);
 
     // Ogni cella ha un numero progressivo, da 1 a 100.
-    for (let i = 1; i <= 100; i++){
-            
+    for (let i = 1; i <=100; i++){
+        
+        
        const square = document.createElement("div");
        square.classList.add("square");
        container.append(square);
        square.append(i);
 
         // Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
+        // In seguito l’utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
+        
+
         square.addEventListener("click", function(){
 
-            console.log("hai cliccato una cella" , i);
-            square.classList.add("clicked");
+            if(!newGame){ //se la partita è ancora in corso
+
+                if (NUMBER_OF_BOMBS.includes(i)){
+                   square.classList.add("clickedred");
+                   console.log("hai calpestato un abomba!"); 
+                   newGame = true; 
+                } else {
+                    square.classList.add('clicked');
+                    console.log("hai cliccato una cella" , i);
+                    point++;
+                    console.log("ecco i tuoi punti: " + point);
+                    newGame = false;
+                }
+    
+            }else{ // se la partita è finita, scrivi in console.
+                
+                console.log('Non puoi cliccare su altre celle, la partita è terminata');
+                newGame = true;
+            }
         });
+
     }
 
 });

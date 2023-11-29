@@ -67,6 +67,9 @@ main{
     
 }
 
+.clickedred{
+    background-color:red;
+}
 .clicked{
     background-color: aqua;
 }
