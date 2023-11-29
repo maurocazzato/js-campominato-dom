@@ -38,8 +38,6 @@ playGame.addEventListener("click", function(){
 
         // Quando l’utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
         // In seguito l’utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina.
-        
-
         square.addEventListener("click", function(){
 
             if(!newGame){ //se la partita è ancora in corso
@@ -53,13 +51,15 @@ playGame.addEventListener("click", function(){
                     console.log("hai cliccato una cella" , i);
                     point++;
                     console.log("ecco i tuoi punti: " + point);
-                    newGame = false;
                 }
     
             }else{ // se la partita è finita, scrivi in console.
                 
                 console.log('Non puoi cliccare su altre celle, la partita è terminata');
-                newGame = true;
+                console.log("il to punteggio é: " + point);
+                newGame = false;
+
+                
             }
         });
 
